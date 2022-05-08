@@ -12,7 +12,7 @@ import {
   ListGroupItem,
   FormControl,
 } from "react-bootstrap";
-import { addToCart } from "../../actions/cartAction";
+import { addToCart,removeFromCart } from "../../actions/cartAction";
 import { useParams, useNavigate, useLocation } from "react-router";
 
 function CartScreen() {
@@ -21,13 +21,13 @@ function CartScreen() {
   const { id } = useParams();
 
   const qty = location.search ? Number(location.search.split("=")[1]) : 1;
-  console.log(qty);
+  // console.log(qty);
 
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-  console.log(cartItems);
+  // console.log(cartItems);
 
   useEffect(() => {
     if (id) {
@@ -35,8 +35,11 @@ function CartScreen() {
     }
   }, [dispatch, qty, id]);
 
+
   const removeFromCartHandler = (id) => {
-  //  dispatch(removeFromCart(id))
+   console.log(id)
+   dispatch(removeFromCart(id))
+  
   };
 
  const checkOutHandler =() => {

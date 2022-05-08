@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { get } from 'express/lib/response';
-import { CART_ADD_ITEM,CART_REMOVE_ITEM } from '../constants/cartConstant';
+
+import { CART_ADD_ITEM, CART_REMOVE_ITEM } from '../constants/cartConstant';
 
 export const addToCart = (id,qty) => async(dispatch,getState) =>{
  
@@ -20,3 +20,12 @@ dispatch({
 localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
 }
 
+debugger;
+export const removeFromCart = (id) => async(dispatch,getState) =>{
+dispatch({
+    type:CART_REMOVE_ITEM,
+    payload:id
+})
+
+localStorage.setItem('cartItems',JSON.stringify(getState().cart.cartItems))
+}
